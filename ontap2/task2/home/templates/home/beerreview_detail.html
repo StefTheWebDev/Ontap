@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My Reviewed beers</h1>
+
+    {% if beerinstance_list %}
+    <ul>
+
+      {% for beerinst in beerinstance_list %} 
+      <li class="{% if beerinst.is_in_progress %}text-danger{% endif %}">
+        <a href="{% url 'beerreview-detail' beerinst.beer.pk %}">{{beerinst.beer.beer_name}}</a> ({{ beerinst.review_date }})        
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no Reviews available.</p>
+    {% endif %}       
+{% endblock %}

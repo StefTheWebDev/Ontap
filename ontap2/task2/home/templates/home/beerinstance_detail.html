@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My Review for ({{ beerinst.beer.beer_name )}}</h1>
+
+    {% if beerinstance_list %}
+    <ul>
+
+     	 {% for beerinst in beerinstance_list %}
+ 
+<div>
+  <h1>{{reviewer.first_name|capfirst}} {{reviewer.last_name|capfirst}} </h1>
+  <br><br> 
+  <p><b>Beer name:</b> {{ beerinst.beer.beer_name}} </p>
+  <p><b>Rating:</b> ({{ beerinst.status }}/5)  </p>
+  <p><b>Email:</b> {{ reviewer.email_address}} </p>
+  <p><b>Phone:</b> {{ reviewer.phone_number}} </p>
+</div>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no Reviews available.</p>
+    {% endif %}       
+{% endblock %}

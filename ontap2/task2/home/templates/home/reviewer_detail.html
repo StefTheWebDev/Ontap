@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+
+<div>
+  <h1>{{reviewer.first_name|capfirst}} {{reviewer.last_name|capfirst}} </h1>
+  <br>
+  <center><p class="text-primary"><b>Provider:</b> {{ reviewer.provider}}</p>
+  <p class="text-primary"><b>Email:</b> {{ reviewer.email_address}}</p>
+  <p class="text-primary"><b>Phone:</b> {{ reviewer.phone_number}}</p>
+</div>
+<br>
+{% endblock %}

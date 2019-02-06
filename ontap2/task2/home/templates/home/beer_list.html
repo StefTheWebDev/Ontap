@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+	<br>
+	<div class="container"><center>
+		<img src="{% static 'images/logo4.png' %}" alt="my image" class="rounded float-center">
+	</div>
+    <br>
+    {% if beer_list %}
+    <ul>
+
+      {% for beer in beer_list %}
+	<div class="list-group">
+		<a href="{% url 'beer_detail' beer.id %}" class="list-group-item list-group-item-action">
+			<p><strong>{{ beer.beer_name|capfirst }}</p>
+        </a>
+	</div>
+      {% endfor %}
+      <br>
+    </ul>
+    {% else %}
+      <center><p>-- THERE ARE NO BEERS TO DISPLAY --</p>
+    {% endif %}
+{% endblock %}

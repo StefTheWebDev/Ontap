@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+	<br>
+	<div class="container"><center>
+		<img src="{% static 'images/breweries.png' %}" alt="my image" class="rounded float-center">
+	</div></center>
+    <br><br>
+    {% if reviewer_list %}
+    <ul>
+
+      {% for reviewer in reviewer_list %}
+	<div class="list-group">
+		<a href="{% url 'reviewer_detail' reviewer.id %}" class="list-group-item list-group-item-action">
+			<strong><p>{{reviewerlast_name|capfirst}} {{reviewer.first_name|capfirst}}</strong> {{reviewer.provider}}</p>
+        </a>
+	</div>
+      {% endfor %}
+      <br>
+    </ul>
+    {% else %}
+      <center><b><p>-- THERE ARE NO REVIEWERS TO DISPLAY --</p>
+    {% endif %}
+{% endblock %}

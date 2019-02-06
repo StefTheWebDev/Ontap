@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+	<br>
+	<div class="container"><center>
+		<img src="{% static 'images/review2.png' %}" alt="all reviews" class="rounded float-right" style="width:300px;height:200px;" align="right">
+	</div>
+
+    {% if beerinstance_list %}
+    <ul>
+
+      {% for beerinst in beerinstance_list %} 
+<div>
+<h1>{{reviewer.first_name|capfirst}} {{reviewer.last_name|capfirst}} </h1>
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-primary">
+      <th scope="col">Beer name:</th>
+      <th scope="col">Rating:</th>
+      <th scope="col">Description:</th>
+      <th scope="col">Reviewer:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ beerinst.beer.beer_name}}</th>
+	  <br>
+      <td>({{ beerinst.status }}/5)</td>
+	  <br>
+      <td>{{ beerinst.beer.description}}</td>
+	  <br>
+      <td>{{beerinst.reviewer}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>
+      {% endfor %}
+    </ul>
+	<br>
+	<br>
+    {% else %}
+      <center><p>-- THERE ARE NO REVIEWS AVAILABLE --</p>
+    {% endif %}
+
+	<div class="container"><center>
+		<img src="{% static 'images/reviews.png' %}" alt="all reviews" class="rounded float-right" style="width:500px;height:300px;">
+	</div>	
+{% endblock %}

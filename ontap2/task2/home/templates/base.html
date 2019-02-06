@@ -1,0 +1,112 @@
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - On Tap</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% load static %}
+        <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" media="all">
+        <header>
+            <div class="header">
+                <div class="main-head-wrap inner-wrap clearfix">
+                    <div id="header-logo-image">
+                      <img src="{% static 'images/logo3.png' %}" alt="On Tap">
+                    </div>
+                    <div id="header-text" class="">
+                        <h1 id="site-title">
+                            <a href="/" title="On Tap" rel="home"><strong>On Tap</a>
+                        </h1>
+                        <p><mark>We provide the list of the best New Zealand craft beers</p></mark>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </head>
+    <body class="wide">
+
+	  <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+              {% block sidebar %}
+              <ul class="nav nav-tabs">
+                <br><br><br>
+				<li class="nav-item">
+					<a class="nav-link active" href="{% url 'home' %}">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'beers' %}">Beers</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'reviewers' %}">Breweries</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'all-reviews'%}">All reviews</a>
+				</li>
+			  
+   {% if user.is_authenticated %}
+	
+	 <li class="nav-item">
+		<a class="nav-link">User: {{ user.get_username }}</a>
+	 </li>
+	 <li class="nav-item">
+		<a class="nav-link" href="{% url 'my-reviewer' %}">My Beers</a>
+	 </li>
+	 <li class="nav-item">
+		<a class="nav-link" href="http://127.0.0.1:8000/admin/home/beerinstance/add/">Make a review</a>
+	 </li>
+     <li class="nav-item">
+		<a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+	 </li>   
+   {% else %}
+     <li class="nav-item">
+		<a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+	 </li>   
+   {% endif %}                 
+    </ul>
+              {% endblock %}
+            </div>
+
+        <div id="page" class="hfeed site">
+
+            <div class="main-wrapper">
+                <div class="single-page clearfix">
+                    <div class="inner-wrap">
+                        <hr>
+                        <div>
+
+                          {% block content %}
+                          {% endblock %}
+                          {% block pagination %}
+                            {% if is_paginated %}
+                              <div class="pagination">
+                                <span class="page-links">
+                                  {% if page_obj.has_previous %}
+                                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                                  {% endif %}
+                                  <span class="page-current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                  </span>
+                                  {% if page_obj.has_next %}
+                                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                                  {% endif %}
+                                </span>
+                              </div>
+                            {% endif %}
+                          {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="colophon">
+                <div class="inner-wrap">
+                   On Tap is a review website by TGP company that allows people to give feedback on craft beers, making lives easier for other people who are into craft beers.
+                </div>
+            </footer>
+        </div>
+      </div>
+    </div>
+    </body>
+</html>

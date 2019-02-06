@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<div class="container"><center>
+	<center><img src="{% static 'images/cb.png' %}" alt="my image" class="rounded float-center" style="width:500px;height:250px;">
+</div>
+<br>
+{% load static %}
+<div class="container-fluid"><center>
+	<img src="{% static 'images/tb.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb1.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb2.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb3.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb4.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb5.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb6.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb.png' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb7.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<img src="{% static 'images/tb8.jpg' %}" class="rounded mx-auto d-block" alt="craft beer image">
+</div>
+<center><img src="{% static 'images/line.png' %}" class="rounded mx-auto d-block" alt="line image">
+<div class="container-fluid"><center>
+	<img src="{% static 'images/bg1.png' %}" class="rounded mx-auto d-block" alt="what image" style="width:300px;height:200px;">
+	<br>
+	<img src="{% static 'images/beer.gif' %}" class="rounded mx-auto d-block" alt="craft beer gif">
+	<br><br><strong>ON TAP is a website created by The Guinea Pigs company where you can get to read reviews coming from different
+	<br>people who have tried certain craft beers. With On Tap, be rest assured that we will provide you<br>with only the best reviews from craft beer enthusiasts like you!</p>
+</div>
+<center><img src="{% static 'images/line.png' %}" class="rounded mx-auto d-block" alt="line image">
+<div class="container-fluid"><center>
+	<img src="{% static 'images/craft.png' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<br>
+	<iframe width="750" height="475" src="https://www.youtube.com/embed/jYhcgWJnqwI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	<br>
+</div>
+<div>
+<center><img src="{% static 'images/line.png' %}" class="rounded mx-auto d-block" alt="line image">
+<div class="container-fluid"><center>
+	<img src="{% static 'images/breweries.png' %}" class="rounded mx-auto d-block" alt="craft beer image">
+	<br>
+	<p style="font-size: 30px">Garage Project</p>
+	<iframe width="750" height="475" src="https://www.youtube.com/embed/YLeGQrw38C4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	<br>
+</div>
+<center><img src="{% static 'images/line.png' %}" class="rounded mx-auto d-block" alt="line image">
+<div class="container-fluid"><center>
+<p style="font-size: 30px">Beer Pouring Sound</p>
+<audio controls>
+  <source src="{% static 'images/beersound.mp3' %}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+</div>
+
+  {% for tour in tours %}
+    <div class="tourname">
+      <a href="{% url 'tour_detail' tour.id %}">
+        <p><strong>{{ tour.name|capfirst }} </strong></p>
+      </a>
+   </div>
+  {% endfor %}
+<br><br>
+  <center><p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+</div>
+{% endblock %}

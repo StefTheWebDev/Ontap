@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h3>{{beer.name|capfirst}} </h3>
+  <p><b>Provider:</b> {{ beer.provider}} </p>
+  <p><b>Description:</b> {{ beer.description}} </p>
+</div>
+{% endblock %}

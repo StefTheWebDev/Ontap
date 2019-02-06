@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+	<br>
+	<br>
+    <div class="container"><center>
+		<img src="{% static 'images/myreview.png' %}" alt="my reviews" class="rounded float-center" style="width:400px;height:150px;">
+	</div>
+	<br>
+	<br>
+
+    {% if beerinstance_list %}
+    <ul>
+
+      {% for beerinst in beerinstance_list %} 
+      <li class="{% if beerinst.is_in_progress %}{% endif %}">
+		<a href="{% url 'beer-detail' beerinst.beer.pk %}">{{beerinst.beer.beer_name}}</a> ({{ beerinst.review_date }})        
+			<table class="table table-hover">
+				<thead>
+					<tr class="bg-primary">
+						<th scope="col">Rating:</th>
+						<th scope="col">Review:</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ beerinst.status }}/5</td>
+						<br>
+						<td>Review {{ beerinst.description }}</td>
+					</tr>
+				</tbody>
+			</table>
+	  </li>
+	  <br>
+	  <br>
+      {% endfor %}
+    </ul>
+	<br>
+	<br>
+    {% else %}
+     <center><b><p>-- THERE ARE NO REVIEWS AVAILABLE --</p>
+    {% endif %}
+	<br>
+	<br>
+	<br>
+	<div class="container"><center>
+		<img src="{% static 'images/beer.png' %}" alt="beer image" class="rounded float-right" style="width:55px;height:55px;">
+		<img src="{% static 'images/beer.png' %}" alt="beer image" class="rounded float-right" style="width:55px;height:55px;">
+		<img src="{% static 'images/beer.png' %}" alt="beer image" class="rounded float-right" style="width:55px;height:55px;">
+	</div>
+	<blockquote class="blockquote text-center">
+		<p class="mb-0">He is a wise man who invented beer.</p>
+		<footer class="blockquote-footer">Plato</footer>
+	</blockquote>	
+{% endblock %}
